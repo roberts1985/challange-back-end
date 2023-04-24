@@ -88,7 +88,7 @@ router.get('/:id', isAuth, method, async (request, response) => {
  */
 
 
-router.post('/', method, async (request, response) => {
+router.post('/', async (request, response) => {
 
     try {
 

@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
         maxLength: 200
     },
     nat: {
-        tyoe: String,
+        type: String,
         trim: true
     },
     role: {
