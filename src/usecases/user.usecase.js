@@ -17,7 +17,27 @@ const createUser = async (userData) => {
     return  User.create({...userData, password: encryptedPassword})
 }
 
+const getUsers = (filters = {}) => {
+    return User.find(filters)
+} 
+
+const getUserById = (id) => {
+    return User.findById(id)
+}
+
+const updateUserById = (id, userData, options = {})=>{
+    return User.findByIdAndUpdate(id, userData, {new: true, ...options})
+}
+
+const deleteUserById = (id) => {
+    return User.findByIdAndDelete(id)
+}
+
 
 export {
-    createUser
+    createUser,
+    updateUserById,
+    deleteUserById,
+    getUserById,
+    getUsers
 }

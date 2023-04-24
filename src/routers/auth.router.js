@@ -1,5 +1,5 @@
 import express from 'express'
-import {login} from '../usecases/auth.usecase.js'
+import { login } from '../usecases/auth.usecase.js'
 
 
 const router = express.Router()
@@ -12,7 +12,7 @@ router.post('/login',async(request,response)=>{
 
         response.json({
             success: true,
-            message:"Koder logged in",
+            message:"User logged in",
             data: {
                 token
             }
@@ -22,7 +22,7 @@ router.post('/login',async(request,response)=>{
             .status(400)
             .json({
                 success: false,
-                message: "Error at get All Koders"
+                message: "User has not logged in"
             })
 
     }
