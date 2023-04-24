@@ -1,7 +1,7 @@
 import express from 'express'
 import { createUser } from '../usecases/user.usecase.js'
 //import { isAuth, isAdmin } from '../middlewares/auth.middleware.js'
-//import { method } from '../middlewares/terminal.middelware.js'
+/* import { method } from '../middlewares/terminal.middelware.js' */
 
 const router = express.Router()
 
@@ -88,7 +88,7 @@ router.get('/:id', isAuth, method, async (request, response) => {
  */
 
 
-router.post('/', method, async (request, response) => {
+router.post('/', /* method, */ async (request, response) => {
 
     try {
 
@@ -98,6 +98,7 @@ router.post('/', method, async (request, response) => {
         response.json({
             success: true,
             data: {
+                message: "lo lograste, papito",
                 user: userCreated
             }
         })

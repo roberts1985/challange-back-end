@@ -21,14 +21,14 @@ const userSchema = new mongoose.Schema({
     },
     user_since: {
         type: Date,
-        required: true
+        // required: true
     },
     bio: {
         type: String,
         maxLength: 200
     },
     nat: {
-        tyoe: String,
+        type: String,
         trim: true
     },
     role: {
