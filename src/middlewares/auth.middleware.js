@@ -23,45 +23,45 @@ const isAuth = (request, response, next)=>{
     }
 }
 
-const isAdmin = async (request, response, next)=>{
-    try {
-        const authorization = request.header.authorization || "" 
+// const isAdmin = async (request, response, next)=>{
+//     try {
+//         const authorization = request.header.authorization || "" 
 
-        const token = authorization.replace("Bearer ", "")
+//         const token = authorization.replace("Bearer ", "")
 
-        const tokenPayload = jwt.verify(token);
+//         const tokenPayload = jwt.verify(token);
 
-        if(!tokenPayload) throw new Error("Invalid authorization")
+//         if(!tokenPayload) throw new Error("Invalid authorization")
 
-        const koderId = tokenPayload.id //Sacar el id
+//         const koderId = tokenPayload.id //Sacar el id
 
-        const koderFound = await getKoderById(koderId)
+//         const koderFound = await getKoderById(koderId)
 
-        if(!koderFound) throw new Error("Invalid authorization")
+//         if(!koderFound) throw new Error("Invalid authorization")
 
-        const { role = "user"} = koderFound; 
+//         const { role = "user"} = koderFound; 
 
-        if(role === "admin"){
-            next()
-        }
-        else{
-            response
-            .status(401)
-            .json({
-                success: false,
-                message: "Unauthorized"
-        })
-        }
+//         if(role === "admin"){
+//             next()
+//         }
+//         else{
+//             response
+//             .status(401)
+//             .json({
+//                 success: false,
+//                 message: "Unauthorized"
+//         })
+//         }
 
 
-    } catch (error){
-        response
-        .status(401)
-        .json({
-            success: false,
-            message: error.message
-        })
-    }
-}
+//     } catch (error){
+//         response
+//         .status(401)
+//         .json({
+//             success: false,
+//             message: error.message
+//         })
+//     }
+// }
 
-export { isAuth, isAdmin }
+export { isAuth }

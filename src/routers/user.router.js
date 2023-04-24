@@ -1,11 +1,11 @@
 import express from 'express'
 import { createUser, updateUserById, deleteUserById, getUserById, getUsers } from '../usecases/user.usecase.js'
-import { isAuth, isAdmin } from '../middlewares/auth.middleware.js'
+import { isAuth } from '../middlewares/auth.middleware.js'
 //import { method } from '../middlewares/terminal.middelware.js'
 
 const router = express.Router()
 
-router.get('/', async(request,response)=> {
+router.get('/', isAuth, async(request,response)=> {
     try{
         const { name, email, user_since, nat } = request.query
 
@@ -42,7 +42,7 @@ router.get('/', async(request,response)=> {
     }
 })
 
-router.get('/:id', async (request,response)=> {
+router.get('/:id', isAuth, async (request,response)=> {
     try {
         const { id } = request.params
 
@@ -91,7 +91,7 @@ router.post('/', async (request, response) => {
     }
 })
 
-router.patch("/:id", async (request, response) => {
+router.patch("/:id", isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const newUserData = request.body
@@ -115,7 +115,7 @@ router.patch("/:id", async (request, response) => {
     }
 })
 
-router.delete("/:id", async (request, response) => {
+router.delete("/:id", isAuth, async (request, response) => {
     try {
         const { id } = request.params
 
