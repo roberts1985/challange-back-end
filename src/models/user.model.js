@@ -20,15 +20,15 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     user_since: {
-        type: Date,
-        required: true
+        type: Date
+        //required: true
     },
     bio: {
         type: String,
         maxLength: 200
     },
     nat: {
-        tyoe: String,
+        type: String,
         trim: true
     },
     role: {
