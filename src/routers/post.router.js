@@ -8,13 +8,15 @@ router.post('/', /* isAuth*/  async (request, response) => {
 
     try {
         const newPost = request.body
+        const userId = request.login._id
         const postCreated = await createPost(newPost);
 
         response.json({
             success: true,
             data: {
                 message: "Post created successfully.",
-                user: postCreated
+                user: postCreated,
+                userId: userId
             }
         })
 
