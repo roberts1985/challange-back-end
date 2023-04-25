@@ -16,9 +16,8 @@ const getPostById = async (id) => {
 }
 
 
-const updatePostById = async (newData, id) => {
-    const {title, content, tags, user_id} = newData
-    return Post.findByIdAndUpdate(id)
+const updatePostById = async (id, newData, options = {}) => {
+    return Post.findByIdAndUpdate(id, newData, {new: true, ...options})
 }
 
 const removePostById = async (id) => {

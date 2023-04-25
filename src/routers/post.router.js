@@ -1,9 +1,10 @@
 import express from 'express'
 import { createPost, getPosts, getPostById, updatePostById, removePostById } from '../usecases/post.usecase.js'
+// import { isAuth } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 
-router.post('/', async (request, response) => {
+router.post('/',/* isAuth */  async (request, response) => {
 
     try {
 
@@ -13,7 +14,7 @@ router.post('/', async (request, response) => {
         response.json({
             success: true,
             data: {
-                message: "Post created succesfully.",
+                message: "Post created successfully.",
                 user: postCreated
             }
         })
@@ -30,9 +31,9 @@ router.post('/', async (request, response) => {
     }
 })
 
-router.get("/", async (request, response)=>{
+router.get("/", /* isAuth */  async (request, response)=>{
     try{
-        const allPosts = await getPosts({})
+        const allPosts = await getPosts()
         response.json({
             success: true,
             data: {
@@ -50,7 +51,7 @@ router.get("/", async (request, response)=>{
     }
 })
 
-router.get("/:id", async(request, response)=>{
+router.get("/:id", /* isAuth */  async(request, response)=>{
     try {
         const {id} = request.params
         const postById = await getPostById(id)
@@ -71,7 +72,7 @@ router.get("/:id", async(request, response)=>{
     }
 })
 
-router.patch("/:id", async (request, response)=>{
+router.patch("/:id", /* isAuth */  async (request, response)=>{
     try {
         const {id} = request.params
         const newData = request.body
@@ -79,7 +80,7 @@ router.patch("/:id", async (request, response)=>{
         response.json({
             success: true,
             data: {
-                message: "Post updated succesfully.",
+                message: "Post updated successfully.",
                 data: modifiedPost
             }
         })
@@ -94,7 +95,7 @@ router.patch("/:id", async (request, response)=>{
     }
 })
 
-router.delete("/:id", async (request, response)=>{
+router.delete("/:id", /* isAuth */  async (request, response)=>{
     try {
         const {id} = request.params
         const removedPost = await removePostById(id)
