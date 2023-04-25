@@ -24,4 +24,10 @@ const removePostById = async (id) => {
     return Post.findByIdAndDelete(id)
 }
 
-export { createPost, updatePostById, getPosts, getPostById, removePostById }
+export { 
+    createPost, 
+    updatePostById, 
+    getPosts, 
+    getPostById, 
+    removePostById
+ }

@@ -4,10 +4,9 @@ import { createPost, getPosts, getPostById, updatePostById, removePostById } fro
 
 const router = express.Router()
 
-router.post('/',/* isAuth */  async (request, response) => {
+router.post('/', /* isAuth*/  async (request, response) => {
 
     try {
-
         const newPost = request.body
         const postCreated = await createPost(newPost);
 
@@ -18,7 +17,6 @@ router.post('/',/* isAuth */  async (request, response) => {
                 user: postCreated
             }
         })
-
 
     } catch (error) {
         response
@@ -31,13 +29,15 @@ router.post('/',/* isAuth */  async (request, response) => {
     }
 })
 
-router.get("/", /* isAuth */  async (request, response)=>{
+router.get("/",/* isAuth*/ async (request, response)=>{
     try{
         const allPosts = await getPosts()
+        const userId = request.headers.authorization
         response.json({
             success: true,
             data: {
-                data: allPosts
+                data: allPosts,
+                userId: userId
             }
         })
 
@@ -51,7 +51,7 @@ router.get("/", /* isAuth */  async (request, response)=>{
     }
 })
 
-router.get("/:id", /* isAuth */  async(request, response)=>{
+router.get("/:id", /* isAuth*/  async(request, response)=>{
     try {
         const {id} = request.params
         const postById = await getPostById(id)
@@ -72,7 +72,7 @@ router.get("/:id", /* isAuth */  async(request, response)=>{
     }
 })
 
-router.patch("/:id", /* isAuth */  async (request, response)=>{
+router.patch("/:id", /* isAuth*/  async (request, response)=>{
     try {
         const {id} = request.params
         const newData = request.body
@@ -95,7 +95,7 @@ router.patch("/:id", /* isAuth */  async (request, response)=>{
     }
 })
 
-router.delete("/:id", /* isAuth */  async (request, response)=>{
+router.delete("/:id",/* isAuth*/  async (request, response)=>{
     try {
         const {id} = request.params
         const removedPost = await removePostById(id)
