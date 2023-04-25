@@ -1,11 +1,12 @@
 import express from 'express'
 import { createUser, updateUserById, deleteUserById, getUserById, getUsers } from '../usecases/user.usecase.js'
 import { isAuth } from '../middlewares/auth.middleware.js'
+import { postAuth } from '../middlewares/auth-post.middleware.js'
 //import { method } from '../middlewares/terminal.middelware.js'
 
 const router = express.Router()
 
-router.get('/', isAuth, async(request,response)=> {
+router.get('/', async(request,response)=> {
     try{
         const { name, email, user_since, nat } = request.query
 
@@ -65,21 +66,6 @@ router.get('/:id', isAuth, async (request,response)=> {
     }
 })
 
-<<<<<<< HEAD
-/***
- * Crear otro middleware para validar el role
- * y verificar si de tipo admin
- * 
- * Si es admin, dejalo pasar
- * 
- * Si no, rechazalo por medio de un response.json
- * 
- * asignarlo al endpoint de delete
- */
-
-
-=======
->>>>>>> develop
 router.post('/', async (request, response) => {
 
     try {
