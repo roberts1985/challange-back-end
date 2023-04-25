@@ -17,8 +17,11 @@ const createUser = async (userData) => {
     return  User.create({...userData, password: encryptedPassword})
 }
 
-const getUsers = (filters = {}) => {
+const getUsers = (filters = {}, page, limit) => {
     return User.find(filters)
+                .limit(limit*1)
+                .skip((page-1)*limit)
+                .exec()
 } 
 
 const getUserById = (id) => {
