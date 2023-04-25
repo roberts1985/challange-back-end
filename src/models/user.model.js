@@ -20,8 +20,8 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     user_since: {
-        type: Date,
-        // required: true
+        type: Date
+        //required: true
     },
     bio: {
         type: String,
