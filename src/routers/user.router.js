@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/', async(request,response)=> {
     try{
-        const { name, email, user_since, nat } = request.query
+        const { name, email, user_since, nat, page = 1, limit = 10 } = request.query
 
         let filters = {}
 
@@ -23,7 +23,7 @@ router.get('/', async(request,response)=> {
         if(nat)
             filters = {...filters,nat}
         
-        const usersFound = await getUsers(filters)
+        const usersFound = await getUsers(filters, page, limit)
 
         response.json({
             success: true,
