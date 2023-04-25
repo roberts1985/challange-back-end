@@ -1,80 +1,70 @@
 import express from 'express'
-import { createUser } from '../usecases/user.usecase.js'
-//import { isAuth, isAdmin } from '../middlewares/auth.middleware.js'
+import { createUser, updateUserById, deleteUserById, getUserById, getUsers } from '../usecases/user.usecase.js'
+import { isAuth } from '../middlewares/auth.middleware.js'
 //import { method } from '../middlewares/terminal.middelware.js'
 
 const router = express.Router()
 
-//router.use(isAuth)
-/*
-router.get('/', isAuth, method, async (request, response) => {
-
-    try {
-        const { name, nat, bio, user_since } = request.query
+router.get('/', isAuth, async(request,response)=> {
+    try{
+        const { name, email, user_since, nat } = request.query
 
         let filters = {}
 
-        if (name)
-            filters = { ...filters, name }
-
-        if (generation)
-            filters = { ...filters, generation }
-
-        if (gender)
-            filters = { ...filters, gender }
-
-        if (name)
-            filters = { ...filters, name }
-
-        if (lastname)
-            filters = { ...filters, lastname }
-
-        if (isGraduated)
-            filters = { ...filters, isGraduated }
-
-        const kodersFound = await getKoders(filters)
+        if(name)
+            filters = {...filters,name}
+        
+        if(email)
+            filters = {...filters,email}
+        
+        if(user_since)
+            filters = {...filters,user_since}
+        
+        if(nat)
+            filters = {...filters,nat}
+        
+        const usersFound = await getUsers(filters)
 
         response.json({
             success: true,
             data: {
-                koders: kodersFound
+                users: usersFound
             }
         })
 
-    } catch (error) {
+    }catch(error){
         response
             .status(400)
             .json({
                 success: false,
-                message: "Error at get All Koders"
+                message: "Error at get All Users"
             })
     }
-
 })
-/*
-router.get('/:id', isAuth, method, async (request, response) => {
-    try {
 
+router.get('/:id', isAuth, async (request,response)=> {
+    try {
         const { id } = request.params
 
-        const koderFound = await getKoderById(id);
+        const userFound = await getUserById(id)
 
         response.json({
             success: true,
             data: {
-                koder: koderFound
+                user: userFound
             }
         })
 
-    } catch (error) {
+    }catch(error) {
         response
             .status(400)
             .json({
                 success: false,
-                message: "Error at get Koder by Id"
+                message: 'Error at get User by Id'
             })
     }
 })
+
 
 /***
  * Crear otro middleware para validar el role
@@ -88,7 +78,7 @@ router.get('/:id', isAuth, method, async (request, response) => {
  */
 
 
-router.post('/', method, async (request, response) => {
+router.post('/', async (request, response) => {
 
     try {
 
@@ -114,19 +104,16 @@ router.post('/', method, async (request, response) => {
     }
 })
 
-/*
-
-router.patch("/:id", isAuth, method, async (request, response) => {
+router.patch("/:id", isAuth, async (request, response) => {
     try {
-
         const { id } = request.params
-        const newKoderData = request.body
-        const koderUpdated = await updateKoderById(id, newKoderData)
+        const newUserData = request.body
+        const userUpdated = await updateUserById(id, newUserData)
 
         response.json({
             success: true,
             data: {
-                koder: koderUpdated
+                user: userUpdated
             }
         })
 
@@ -135,22 +122,22 @@ router.patch("/:id", isAuth, method, async (request, response) => {
             .status(400)
             .json({
                 success: false,
-                message: "Error at update Koder",
+                message: "Error at update User",
                 extraInfo: error.message
             })
     }
 })
 
-router.delete("/:id", isAuth, isAdmin, method, async (request, response) => {
+router.delete("/:id", isAuth, async (request, response) => {
     try {
         const { id } = request.params
 
-        const koderDeleted = await deleteKoderById(id)
+        const userDeleted = await deleteUserById(id)
 
         response.json({
             success: true,
             data: {
-                koder: koderDeleted
+                user: userDeleted
             }
         })
     } catch (error) {
@@ -158,10 +145,10 @@ router.delete("/:id", isAuth, isAdmin, method, async (request, response) => {
             .status(400)
             .json({
                 success: false,
-                message: "Error at delete Koder",
+                message: "Error at delete User",
                 extraInfo: error.message
             })
     }
-})*/
+})
 
 export default router
