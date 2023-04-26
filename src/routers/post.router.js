@@ -8,7 +8,6 @@ router.post('/',  isAuth,  async (request, response) => {
 
     try {
         const newPost = request.body
-        const userId = User.findById
         const postCreated = await createPost(newPost);
 
         response.json({
@@ -16,7 +15,6 @@ router.post('/',  isAuth,  async (request, response) => {
             data: {
                 message: "Post created successfully.",
                 user: postCreated,
-                userId: userId
             }
         })
 
@@ -34,12 +32,10 @@ router.post('/',  isAuth,  async (request, response) => {
 router.get("/", async (request, response)=>{
     try{
         const allPosts = await getPosts()
-        const userId = request.headers.authorization
         response.json({
             success: true,
             data: {
                 data: allPosts,
-                userId: userId
             }
         })
 
