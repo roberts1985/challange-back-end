@@ -12,5 +12,6 @@ server.use(express.json())
 server.use('/users',userRouter)
 server.use('/auth',authRouter)
 server.use('/posts',postRouter)
+//server.use('/auth',authRouter)
 
 export { server }

@@ -32,7 +32,8 @@ router.post('/',  isAuth,  async (request, response) => {
 router.get("/", async (request, response)=>{
     try{
         const allPosts = await getPosts()
-        response.json({
+        response
+        .json({
             success: true,
             data: {
                 data: allPosts,
