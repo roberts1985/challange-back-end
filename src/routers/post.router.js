@@ -4,7 +4,7 @@ import { isAuth } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 
-router.post('/',  isAuth,  async (request, response) => {
+router.post('/',  async (request, response) => {
 
     try {
         const newPost = request.body

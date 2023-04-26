@@ -1,7 +1,6 @@
 import express from 'express'
 import { createUser, updateUserById, deleteUserById, getUserById, getUsers } from '../usecases/user.usecase.js'
 import { isAuth } from '../middlewares/auth.middleware.js'
-import { postAuth } from '../middlewares/auth-post.middleware.js'
 //import { method } from '../middlewares/terminal.middelware.js'
 
 const router = express.Router()

@@ -1,3 +1,4 @@
+import { request } from 'express';
 import jwt from '../libs/jwt.js'
 
 const isAuth = (request, response, next)=>{
@@ -22,8 +23,6 @@ const isAuth = (request, response, next)=>{
         })
     }
 }
-
-
 
 // const isAdmin = async (request, response, next)=>{
 //     try {
