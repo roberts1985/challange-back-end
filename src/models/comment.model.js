@@ -1,4 +1,4 @@
-import mongoose, {Schema} from "mongoose"
+import mongoose, { Schema } from "mongoose"
 
 const commentSchema = new mongoose.Schema({
     content: {
@@ -19,6 +19,6 @@ const commentSchema = new mongoose.Schema({
     }
 })
 
-const Comment = mongoose.model('comments', commentSchema)
+const Comment = mongoose.model('Comment', commentSchema)
 
 export { Comment }
