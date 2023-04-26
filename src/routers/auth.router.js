@@ -22,7 +22,7 @@ router.post('/login',async(request,response)=>{
             .status(400)
             .json({
                 success: false,
-                message: "User has not logged in"
+                message: error.message
             })
 
     }
