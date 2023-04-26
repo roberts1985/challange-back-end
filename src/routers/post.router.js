@@ -1,10 +1,10 @@
 import express from 'express'
 import { createPost, getPosts, getPostById, updatePostById, removePostById } from '../usecases/post.usecase.js'
-// import { isAuth } from "../middlewares/auth.middleware.js"
+import { isAuth } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 
-router.post('/', /* isAuth*/  async (request, response) => {
+router.post('/',  isAuth,  async (request, response) => {
 
     try {
         const newPost = request.body
@@ -29,7 +29,7 @@ router.post('/', /* isAuth*/  async (request, response) => {
     }
 })
 
-router.get("/",/* isAuth*/ async (request, response)=>{
+router.get("/", async (request, response)=>{
     try{
         const allPosts = await getPosts()
         const userId = request.headers.authorization
@@ -51,7 +51,7 @@ router.get("/",/* isAuth*/ async (request, response)=>{
     }
 })
 
-router.get("/:id", /* isAuth*/  async(request, response)=>{
+router.get("/:id", isAuth,  async(request, response)=>{
     try {
         const {id} = request.params
         const postById = await getPostById(id)
@@ -72,7 +72,7 @@ router.get("/:id", /* isAuth*/  async(request, response)=>{
     }
 })
 
-router.patch("/:id", /* isAuth*/  async (request, response)=>{
+router.patch("/:id", isAuth,  async (request, response)=>{
     try {
         const {id} = request.params
         const newData = request.body
@@ -95,7 +95,7 @@ router.patch("/:id", /* isAuth*/  async (request, response)=>{
     }
 })
 
-router.delete("/:id",/* isAuth*/  async (request, response)=>{
+router.delete("/:id",isAuth, async (request, response)=>{
     try {
         const {id} = request.params
         const removedPost = await removePostById(id)
