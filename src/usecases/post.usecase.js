@@ -1,14 +1,15 @@
 import { Post } from '../models/post.model.js'
+import { User } from '../models/user.model.js'
 
 // Use Cases = Handlers
 
 const createPost = async (postData) => {
     const {title, content, tags, user_id} = postData
-    return  Post.create({title, content, tags, user_id})
+    return  Post.create({title, content, tags, user_id: User._id})
 }
 
 const getPosts = async () => {
-    return Post.find().populate("user_id")
+    return Post.find()
 }
 
 const getPostById = async (id) => {
