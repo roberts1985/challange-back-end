@@ -1,21 +1,21 @@
-import mongoose, {Schema} from "mongoose"
+import mongoose, { Schema } from "mongoose"
 
 const commentSchema = new mongoose.Schema({
     content: {
         type:String,
         minLength: 20,
-        maxLength: 300,
+        maxLength: 1000,
         trim: true
     },
     comment_date: {
         type: Date
-        //required: true
+
     },
     post_id: {
-        type: Schema.Types.ObjectId, ref: 'Post'
+        type: Schema.Types.ObjectId, ref: 'posts'
     }, 
     user_id: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'users'
     }
 })
 

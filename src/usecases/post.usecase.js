@@ -8,7 +8,7 @@ const createPost = async (postData) => {
 }
 
 const getPosts = async () => {
-    return Post.find()
+    return Post.find().populate("user_id")
 }
 
 const getPostById = async (id) => {
