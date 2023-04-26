@@ -1,14 +1,14 @@
 import express from 'express'
 import { createPost, getPosts, getPostById, updatePostById, removePostById } from '../usecases/post.usecase.js'
-// import { isAuth } from "../middlewares/auth.middleware.js"
+import { isAuth } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 
-router.post('/', /* isAuth*/  async (request, response) => {
+router.post('/', isAuth, async (request, response) => {
 
     try {
         const newPost = request.body
-        const userId = request.login._id
+        const userId = User.findById
         const postCreated = await createPost(newPost);
 
         response.json({
@@ -31,7 +31,7 @@ router.post('/', /* isAuth*/  async (request, response) => {
     }
 })
 
-router.get("/",/* isAuth*/ async (request, response)=>{
+router.get("/", async (request, response)=>{
     try{
         const allPosts = await getPosts()
         const userId = request.headers.authorization
