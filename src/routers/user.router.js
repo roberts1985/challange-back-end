@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/', isAuth, async(request,response)=> {
     try{
-        const { name, email, user_since, nat } = request.query
+        const { name, email, user_since, nat, page = 1, limit = 10 } = request.query
 
         let filters = {}
 
@@ -23,7 +23,7 @@ router.get('/', isAuth, async(request,response)=> {
         if(nat)
             filters = {...filters,nat}
         
-        const usersFound = await getUsers(filters)
+        const usersFound = await getUsers(filters, page, limit)
 
         response.json({
             success: true,
@@ -83,13 +83,13 @@ router.post('/', async (request, response) => {
     try {
 
         const newUser = request.body
-        const userCreated = await createUser(newUser);
+        let userCreated = await createUser(newUser);
 
         response.json({
             success: true,
             data: {
-                message: "lo lograste, papito",
-                user: userCreated
+                message: "User created successfully.",
+                user: userCreated,
             }
         })
 
@@ -99,8 +99,8 @@ router.post('/', async (request, response) => {
             .status(400)
             .json({
                 success: false,
-                message: "Error at create Koder",
-                extraInfo: error.message
+                message: "Error at creating User.",
+                extraInfo: error.message,
             })
     }
 })
