@@ -65,6 +65,19 @@ router.get('/:id', isAuth, async (request,response)=> {
     }
 })
 
+
+/***
+ * Crear otro middleware para validar el role
+ * y verificar si de tipo admin
+ * 
+ * Si es admin, dejalo pasar
+ * 
+ * Si no, rechazalo por medio de un response.json
+ * 
+ * asignarlo al endpoint de delete
+ */
+
+
 router.post('/', async (request, response) => {
 
     try {
@@ -75,6 +88,7 @@ router.post('/', async (request, response) => {
         response.json({
             success: true,
             data: {
+                message: "lo lograste, papito",
                 user: userCreated
             }
         })

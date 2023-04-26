@@ -15,10 +15,12 @@ const postSchema = new mongoose.Schema({
         type:String,
         minLength: 10,
         maxLength: 300,
-        trim: true
+        trim: true,
+        required: true
     },
     user_id: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'User',
+        required: true
     }
 })
 
