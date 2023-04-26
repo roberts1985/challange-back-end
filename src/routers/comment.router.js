@@ -1,31 +1,18 @@
 import express from 'express'
-import { getComments, updateCommentById, deleteCommentById, getCommentById } from '../usecases/comment.usecase.js'
+import { getComments, createComment, updateCommentById, deleteCommentById } from '../usecases/comment.usecase.js'
 import { isAuth } from '../middlewares/auth.middleware.js'
+
 
 const router = express.Router()
 
-router.get('/comments', async(request,response)=> {
+router.get('/', async(request,response)=> {
     try{
-        const { content, comment_date, user_id } = request.query
 
-        let filters = {}
-
-        if(content)
-            filters = {...filters,content}
-        
-        if(comment_date)
-            filters = {...filters,comment_date}
-        
-        if(user_id)
-            filters = {...filters,user_id}
-        
-        
-        const commentsFound = await getComments(filters)
-
+        const commentsFound = await getComments()
         response.json({
             success: true,
             data: {
-                users: commentsFound
+                comments: commentsFound
             }
         })
 
@@ -34,13 +21,37 @@ router.get('/comments', async(request,response)=> {
             .status(400)
             .json({
                 success: false,
-                message: "Error at getting comments"
+                message: error.message
             })
     }
 })
 
+router.post('/',  isAuth,  async (request, response) => {
 
-router.patch("comments/:id", isAuth, async (request, response) => {
+    try {
+        const newComment = request.body
+        const commentCreated = await createComment(newComment);
+
+        response.json({
+            success: true,
+            data: {
+                message: "Comment created successfully.",
+                user: commentCreated
+            }
+        })
+
+    } catch (error) {
+        response
+            .status(400)
+            .json({
+                success: false,
+                message: "Error at creating Comment.",
+                extraInfo: error.message
+            })
+    }
+})
+
+router.patch("/:id", isAuth, async (request, response) => {
     try {
         const { id } = request.params
         const newCommentData = request.body
@@ -64,7 +75,7 @@ router.patch("comments/:id", isAuth, async (request, response) => {
     }
 })
 
-router.delete("comments/:id", isAuth, async (request, response) => {
+router.delete("/:id", async (request, response) => {
     try {
         const { id } = request.params
 

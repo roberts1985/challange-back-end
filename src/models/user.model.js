@@ -1,7 +1,7 @@
-import mongoose, {Schema} from "mongoose"
-//import { Schema } from 'mongoose'
+import mongoose, { Schema } from "mongoose"
 
 const userSchema = new mongoose.Schema({
+
     name: {
         type: String,
         required: true,
@@ -37,10 +37,10 @@ const userSchema = new mongoose.Schema({
         default: 'user'
     },
     posts: { 
-        type: Schema.Types.ObjectId, ref: 'Post' 
+        type: Schema.Types.ObjectId, ref: 'posts' 
     },
     comments: {
-        type: Schema.Types.ObjectId, ref: 'Comment'
+        type: Schema.Types.ObjectId, ref: 'comments'
     }
 })
 
