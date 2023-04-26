@@ -14,7 +14,7 @@ router.post('/',  isAuth,  async (request, response) => {
             success: true,
             data: {
                 message: "Post created successfully.",
-                user: postCreated,
+                user: postCreated
             }
         })
 
