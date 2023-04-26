@@ -4,7 +4,7 @@ import { isAuth } from "../middlewares/auth.middleware.js"
 
 const router = express.Router()
 
-router.post('/', isAuth, async (request, response) => {
+router.post('/',  isAuth,  async (request, response) => {
 
     try {
         const newPost = request.body
@@ -53,7 +53,7 @@ router.get("/", async (request, response)=>{
     }
 })
 
-router.get("/:id", /* isAuth*/  async(request, response)=>{
+router.get("/:id", isAuth,  async(request, response)=>{
     try {
         const {id} = request.params
         const postById = await getPostById(id)
@@ -74,7 +74,7 @@ router.get("/:id", /* isAuth*/  async(request, response)=>{
     }
 })
 
-router.patch("/:id", /* isAuth*/  async (request, response)=>{
+router.patch("/:id", isAuth,  async (request, response)=>{
     try {
         const {id} = request.params
         const newData = request.body
@@ -97,7 +97,7 @@ router.patch("/:id", /* isAuth*/  async (request, response)=>{
     }
 })
 
-router.delete("/:id",/* isAuth*/  async (request, response)=>{
+router.delete("/:id",isAuth, async (request, response)=>{
     try {
         const {id} = request.params
         const removedPost = await removePostById(id)

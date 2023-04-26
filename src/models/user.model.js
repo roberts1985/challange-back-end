@@ -36,8 +36,14 @@ const userSchema = new mongoose.Schema({
         enum: ['user','admin'],
         default: 'user'
     },
+    posts: { 
+        type: Schema.Types.ObjectId, ref: 'Post' 
+    },
+    comments: {
+        type: Schema.Types.ObjectId, ref: 'Comment'
+    }
 })
 
-const User = mongoose.model('users',userSchema)
+const User = mongoose.model('Users',userSchema)
 
 export { User }

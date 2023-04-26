@@ -12,6 +12,8 @@ const verify = (token)=> {
     return jwt.verify(token,JWT_SECRET)
 }
 
+console.log(JWT_SECRET)
+
 export default {
     ...jwt,
     sign,
