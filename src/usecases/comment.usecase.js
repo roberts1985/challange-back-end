@@ -22,8 +22,17 @@ const updateCommentById = (id, commentData, options = {})=>{
 const deleteCommentById = (id) => {
     return Comment.findByIdAndDelete(id)
 }
+import { Comment } from '../models/comment.model.js'
+
+
+const createComment = async (commentData) => {
+    const { content, comment_date, user_id } = commentData
+    return Comment.create({ content, comment_date, user_id })
+}
+
 
 export {
+    createComment,
     getComments,
     getCommentById,
     updateCommentById,

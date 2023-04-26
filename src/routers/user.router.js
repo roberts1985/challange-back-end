@@ -83,13 +83,13 @@ router.post('/', async (request, response) => {
     try {
 
         const newUser = request.body
-        const userCreated = await createUser(newUser);
+        let userCreated = await createUser(newUser);
 
         response.json({
             success: true,
             data: {
-                message: "lo lograste, papito",
-                user: userCreated
+                message: "User created successfully.",
+                user: userCreated,
             }
         })
 
@@ -99,8 +99,8 @@ router.post('/', async (request, response) => {
             .status(400)
             .json({
                 success: false,
-                message: "Error at create Koder",
-                extraInfo: error.message
+                message: "Error at creating User.",
+                extraInfo: error.message,
             })
     }
 })
