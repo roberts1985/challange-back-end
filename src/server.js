@@ -10,9 +10,8 @@ server.use(express.json())
 
 //Routers
 server.use('/users',userRouter)
-//server.use('/posts',postRouter)
 server.use('/auth',authRouter)
 server.use('/posts',postRouter)
-//server.use('/auth',authRouter)
+
 
 export { server }
