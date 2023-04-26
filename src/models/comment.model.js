@@ -4,12 +4,12 @@ const commentSchema = new mongoose.Schema({
     content: {
         type:String,
         minLength: 20,
-        maxLength: 300,
+        maxLength: 1000,
         trim: true
     },
     comment_date: {
         type: Date
-        //required: true
+
     },
     post_id: {
         type: Schema.Types.ObjectId, ref: 'Post'
