@@ -5,7 +5,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
         minLength: 3,
-        maxLength: 100,
+        maxLength: 1000,
         trim: true
     },
     tags: {
@@ -14,7 +14,7 @@ const postSchema = new mongoose.Schema({
     content: {
         type:String,
         minLength: 10,
-        maxLength: 300,
+        maxLength: 3000,
         trim: true,
         required: true
     },
