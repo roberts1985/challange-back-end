@@ -18,9 +18,7 @@ const postSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    user_id: {
-        type: Schema.Types.ObjectId, ref: 'users'
-    }
+    user_id: { type: Schema.Types.ObjectId, ref: 'users' }
 })
 
 const Post = mongoose.model('posts', postSchema)
