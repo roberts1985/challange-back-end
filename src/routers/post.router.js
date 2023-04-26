@@ -7,14 +7,14 @@ const router = express.Router()
 router.post('/',  isAuth,  async (request, response) => {
 
     try {
-        const newPost = request.body
-        const postCreated = await createPost(newPost);
+        let newPost = request.body
+        const postCreated = await createPost(newPost)
 
         response.json({
             success: true,
             data: {
                 message: "Post created successfully.",
-                user: postCreated
+                data: postCreated
             }
         })
 
@@ -36,7 +36,7 @@ router.get("/", async (request, response)=>{
         .json({
             success: true,
             data: {
-                data: allPosts,
+                data: allPosts
             }
         })
 
