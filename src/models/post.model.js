@@ -18,9 +18,8 @@ const postSchema = new mongoose.Schema({
         trim: true,
         required: true
     },
-    _id: {
-        type: Schema.Types.ObjectId, ref: 'User',
-        required: true
+    user_id: {
+        type: Schema.Types.ObjectId, ref: 'User'
     }
 })
 
