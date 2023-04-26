@@ -13,5 +13,4 @@ server.use('/users',userRouter)
 server.use('/auth',authRouter)
 server.use('/posts',postRouter)
 
-
 export { server }
