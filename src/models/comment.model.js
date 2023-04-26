@@ -12,13 +12,13 @@ const commentSchema = new mongoose.Schema({
 
     },
     post_id: {
-        type: Schema.Types.ObjectId, ref: 'Post'
+        type: Schema.Types.ObjectId, ref: 'posts'
     }, 
     user_id: {
-        type: Schema.Types.ObjectId, ref: 'User'
+        type: Schema.Types.ObjectId, ref: 'users'
     }
 })
 
-const Comment = mongoose.model('Comment', commentSchema)
+const Comment = mongoose.model('comments', commentSchema)
 
 export { Comment }

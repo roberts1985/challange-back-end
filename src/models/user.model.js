@@ -37,13 +37,13 @@ const userSchema = new mongoose.Schema({
         default: 'user'
     },
     posts: { 
-        type: Schema.Types.ObjectId, ref: 'Post' 
+        type: Schema.Types.ObjectId, ref: 'posts' 
     },
     comments: {
-        type: Schema.Types.ObjectId, ref: 'Comment'
+        type: Schema.Types.ObjectId, ref: 'comments'
     }
 })
 
-const User = mongoose.model('User',userSchema)
+const User = mongoose.model('users',userSchema)
 
 export { User }
