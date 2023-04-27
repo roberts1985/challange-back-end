@@ -7,10 +7,7 @@ const createComment = async (commentData) => {
 }
 
 const getComments = async () => {
-    return Comment.find().populate({
-        path: 'user_id',
-        select:'name',
-    })
+    return Comment.find().populate({ path: 'user_id', select: 'name' })
 }
 
 const getCommentById = async (id) => {
