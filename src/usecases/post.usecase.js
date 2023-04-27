@@ -15,7 +15,6 @@ const getPostById = async (id) => {
     return Post.findById(id)
 }
 
-
 const updatePostById = async (id, newData, options = {}) => {
     return Post.findByIdAndUpdate(id, newData, {new: true, ...options})
 }
